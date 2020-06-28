@@ -82,6 +82,13 @@
 			<version>1.2.62</version>
 		</dependency>
 
+		<!-- VO、DO类映射 -->
+		<dependency>
+			<groupId>com.github.dozermapper</groupId>
+			<artifactId>dozer-spring-boot-starter</artifactId>
+			<version>6.5.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
