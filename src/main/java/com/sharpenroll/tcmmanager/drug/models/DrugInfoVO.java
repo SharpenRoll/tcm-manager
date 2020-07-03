@@ -9,5 +9,6 @@ public class DrugInfoVO {
     private String name;
     private Double price;
     private String unit;
+    private Double inventory;
 
 }
