@@ -33,6 +33,15 @@ public class PatientInfoController {
         return patientInfoManager.getById(patientInfoId);
     }
 
+    @RequestMapping("/getByName")
+    @ApiOperation(value = "按姓名查询患者信息", httpMethod = "GET")
+    @ResponseBody
+    public Object getByName(
+            @ApiParam(name = "患者姓名", required = true) @RequestParam String patientName
+    ) {
+        return patientInfoManager.getByName(patientName);
+    }
+
     @RequestMapping("/save")
     @ApiOperation(value = "保存患者信息", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
@@ -43,7 +52,7 @@ public class PatientInfoController {
     }
 
     @RequestMapping("/delete")
-    @ApiOperation(value = "保存患者信息", httpMethod = "DELETE")
+    @ApiOperation(value = "删除患者信息", httpMethod = "DELETE")
     @ResponseBody
     public Object delete(
             @ApiParam(name = "患者信息id", required = true) @RequestParam int patientInfoId

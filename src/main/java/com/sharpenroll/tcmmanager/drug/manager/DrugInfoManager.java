@@ -9,6 +9,10 @@ public interface DrugInfoManager {
 
     List<DrugInfoVO> listAll();
 
+    DrugInfoVO getById(int drugInfoId);
+
+    List<DrugInfoVO> getByName(String drugName);
+
     int save(DrugInfoDO drugInfoDO);
 
     void delete(int drugInfoId);

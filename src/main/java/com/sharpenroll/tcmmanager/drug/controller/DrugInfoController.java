@@ -24,6 +24,24 @@ public class DrugInfoController {
         return drugInfoManager.listAll();
     }
 
+    @RequestMapping("/getById")
+    @ApiOperation(value = "获取单个药品信息", httpMethod = "GET")
+    @ResponseBody
+    public Object getById(
+            @ApiParam(name = "药品信息id", required = true) @RequestParam int drugInfoId
+    ) {
+        return drugInfoManager.getById(drugInfoId);
+    }
+
+    @RequestMapping("/getByName")
+    @ApiOperation(value = "按药品名查询药品信息", httpMethod = "GET")
+    @ResponseBody
+    public Object getByName(
+            @ApiParam(name = "药品名", required = true) @RequestParam String drugName
+    ) {
+        return drugInfoManager.getByName(drugName);
+    }
+
     @RequestMapping("/save")
     @ApiOperation(value = "保存药品信息", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
@@ -34,7 +52,7 @@ public class DrugInfoController {
     }
 
     @RequestMapping("/delete")
-    @ApiOperation(value = "保存药品信息", httpMethod = "DELETE")
+    @ApiOperation(value = "删除药品信息", httpMethod = "DELETE")
     @ResponseBody
     public Object delete(
             @ApiParam(name = "药品信息id", required = true) @RequestParam int drugInfoId

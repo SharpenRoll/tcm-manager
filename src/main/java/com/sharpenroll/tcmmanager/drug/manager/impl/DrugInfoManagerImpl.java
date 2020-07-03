@@ -1,5 +1,7 @@
 package com.sharpenroll.tcmmanager.drug.manager.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sharpenroll.tcmmanager.common.utils.MapperUtil;
 import com.sharpenroll.tcmmanager.drug.entity.DrugInfo;
 import com.sharpenroll.tcmmanager.drug.manager.DrugInfoManager;
@@ -15,22 +17,34 @@ import java.util.List;
 public class DrugInfoManagerImpl implements DrugInfoManager {
 
     @Autowired
-    IDrugInfoService drugService;
+    IDrugInfoService drugInfoService;
 
     @Override
     public List<DrugInfoVO> listAll() {
-        return MapperUtil.mapList(drugService.list(), DrugInfoVO.class);
+        return MapperUtil.mapList(drugInfoService.list(), DrugInfoVO.class);
+    }
+
+    @Override
+    public DrugInfoVO getById(int drugInfoId) {
+        return MapperUtil.map(drugInfoService.getById(drugInfoId), DrugInfoVO.class);
+    }
+
+    @Override
+    public List<DrugInfoVO> getByName(String drugName) {
+        LambdaQueryWrapper<DrugInfo> queryWrapper = new QueryWrapper<DrugInfo>().lambda()
+                .like(DrugInfo::getName, drugName);
+        return MapperUtil.mapList(drugInfoService.list(queryWrapper), DrugInfoVO.class);
     }
 
     @Override
     public int save(DrugInfoDO drugInfoDO) {
         DrugInfo drugInfo = MapperUtil.map(drugInfoDO, DrugInfo.class);
-        drugService.saveOrUpdate(drugInfo);
+        drugInfoService.saveOrUpdate(drugInfo);
         return drugInfo.getId();
     }
 
     @Override
     public void delete(int drugInfoId) {
-        drugService.removeById(drugInfoId);
+        drugInfoService.removeById(drugInfoId);
     }
 }
