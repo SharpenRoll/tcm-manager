@@ -9,5 +9,8 @@ import lombok.Data;
 public class PatientInfo extends BaseModel {
 
     private String name;
+    private Integer gender;
+    private String birth;
+    private String phone;
 
 }
