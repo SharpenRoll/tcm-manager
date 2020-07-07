@@ -6,7 +6,7 @@ import lombok.Data;
 public class PrescriptionInfoDO {
 
     Integer id;
-    int patientId;
+    Integer patientId;
     PrescriptionContent content;
 
 }

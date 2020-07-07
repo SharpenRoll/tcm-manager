@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @TableName("prescription_info")
 public class PrescriptionInfo extends BaseModel {
 
-    int patientId;
+    Integer patientId;
     String content;
 
     @TableField(update = "datetime('now','localtime')")
